@@ -1,5 +1,7 @@
-carbonapi (0.11.0+git20180608.eb45533-1) UNRELEASED; urgency=medium
+carbonapi (0.11.0-1ppa1~ubuntu18.04.1) bionic; urgency=medium
 
-  * Initial release (Closes: TODO)
+  * Upstream 0.11.0
+  * Copy example config and service files from carbonapi 0.11.0
+  * Modify build and test
 
- -- Hiroaki Nakamura <hnakamur@gmail.com>  Fri, 15 Jun 2018 12:45:09 +0900
+ -- Hiroaki Nakamura <hnakamur@gmail.com>  Fri, 15 Jun 2018 14:52:27 +0900
