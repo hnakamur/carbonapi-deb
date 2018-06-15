@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" != "configure" ]; then
+    exit 0
+fi
+
+# Set permisions on default log directory on installation
+if [ -z "$2" ]; then
+    chown carbon:carbon /var/log/carbonapi
+fi
+
+if [ -f /var/run/carbonapi.pid ] && kill -0 $(cat /var/run/carbonapi.pid) >/dev/null; then
+    echo "######################################"
+    echo "# Please restart carbonapi manually. #"
+    echo "######################################"
+else
+    invoke-rc.d carbonapi start || true
+fi
+
+#DEBHELPER#
+
+exit 0

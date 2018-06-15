@@ -1,0 +1,42 @@
+#! /bin/sh
+# preinst script for carbonapi
+
+set -e
+
+addcarbonuser() {
+    # creating carbon group if he isn't already there
+    if ! getent group carbon >/dev/null; then
+        addgroup --system carbon >/dev/null
+    fi
+
+    # creating carbon user if he isn't already there
+    if ! getent passwd carbon >/dev/null; then
+        adduser \
+          --system \
+          --disabled-login \
+          --ingroup carbon \
+          --no-create-home \
+          --home /nonexistent \
+          --gecos "carbon user" \
+          --shell /bin/false \
+          carbon  >/dev/null
+    fi
+}
+
+case "$1" in
+    install|upgrade)
+        addcarbonuser
+        ;;
+
+    abort-upgrade)
+        ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 0
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0
