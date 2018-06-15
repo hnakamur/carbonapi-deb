@@ -1,4 +1,3 @@
 debian/carbonapi.example.yaml			etc/carbonapi
 debian/graphiteWeb.example.yaml			etc/carbonapi
 debian/graphTemplates.example.yaml		etc/carbonapi
-debian/carbonapi				etc/default

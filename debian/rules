@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+INSTALLDIR = $(CURDIR)/debian/carbonapi
+
 %:
 	dh $@ --buildsystem=golang --with=golang
 
@@ -8,6 +10,11 @@ override_dh_build:
 
 override_dh_test:
 	make test
+
+override_dh_install:
+	dh_install
+	mkdir -p $(INSTALLDIR)/etc/default
+	install -m 644 debian/carbonapi.env $(INSTALLDIR)/etc/default/carbonapi
 
 override_dh_installinit:
 	dh_installinit --no-start -- carbonapi
