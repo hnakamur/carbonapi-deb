@@ -2,3 +2,12 @@
 
 %:
 	dh $@ --buildsystem=golang --with=golang
+
+override_dh_build:
+	make carbonapi
+
+override_dh_test:
+	make test
+
+override_dh_installinit:
+	dh_installinit --no-start -- carbonapi
